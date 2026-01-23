@@ -6,7 +6,7 @@ A modern, responsive profile card website with animated navigation and interacti
 
 ## 🌐 Live Demo
 
-[View Live Demo](https://ami-shahadat-hossain.github.io/profile-card/)
+[View Live Demo](https://ami-shahadat-hossain.github.io/profile-card/profile-card-shahadat.html)
 
 ## ✨ Features
 
