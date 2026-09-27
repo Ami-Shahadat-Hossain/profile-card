@@ -2,511 +2,2079 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <meta
+      name="description"
+      content="Mohammad Shahadat Hossain - Software Engineer, Laravel Developer and Full Stack Web Developer."
+    />
+
     <title>Mohammad Shahadat Hossain | Software Engineer</title>
+
     <style>
-      @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
-      * {
+      @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,600|Jost:400,500,600,700&display=swap");
+
+      /* =========================================================
+         RESET
+      ========================================================= */
+
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
       }
 
+      html {
+        width: 100%;
+        min-height: 100%;
+      }
+
       body {
+        width: 100%;
+        min-height: 100dvh;
+
+        margin: 0;
+        padding: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         color: #2b2c48;
+
         font-family: "Jost", sans-serif;
-        background-image: url(https://images.wallpapersden.com/image/download/laravel-php-4k_bGhuZ2mUmZqaraWkpJRpZWVlrWdnamU.jpg);
+
+        background-image:
+          linear-gradient(rgba(17, 24, 39, 0.28), rgba(17, 24, 39, 0.38)),
+          url("https://images.wallpapersden.com/image/download/laravel-php-4k_bGhuZ2mUmZqaraWkpJRpZWVlrWdnamU.jpg");
+
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        min-height: 100vh;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 20px;
-        margin: 0;
+
+        overflow: hidden;
       }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* =========================================================
+         MAIN PROFILE CARD
+      ========================================================= */
 
       .card {
-        max-width: 440px;
+        width: min(100%, 620px);
+
+        height: min(820px, calc(100dvh - 40px));
+
+        min-height: 680px;
+
         margin: auto;
-        overflow-y: auto;
+
         position: relative;
         z-index: 1;
-        overflow-x: hidden;
-        background-color: white;
+
         display: flex;
-        transition: 0.3s;
         flex-direction: column;
-        border-radius: 10px;
-        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+
+        overflow: hidden;
+
+        background: rgba(255, 255, 255, 0.98);
+
+        border: 1px solid rgba(255, 255, 255, 0.75);
+
+        border-radius: 20px;
+
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.28),
+          0 0 0 8px rgba(255, 255, 255, 0.13);
+
+        transition:
+          width 0.35s ease,
+          height 0.35s ease,
+          border-radius 0.35s ease,
+          box-shadow 0.35s ease;
       }
 
-      .card[data-state="#about"] {
-        height: 550px;
-      }
-      .card[data-state="#about"] .card-main {
-        padding-top: 0;
-      }
-
-      .card[data-state="#contact"] {
-        height: 550px;
-      }
-
+      .card[data-state="#about"],
+      .card[data-state="#contact"],
       .card[data-state="#experience"] {
-        height: 550px;
+        height: min(820px, calc(100dvh - 40px));
       }
 
-      .card.is-active .card-header {
-        height: 80px;
-      }
-      .card.is-active .card-cover {
-        height: 100px;
-        top: -50px;
-      }
-      .card.is-active .card-avatar {
-        transform: none;
-        left: 20px;
-        width: 50px;
-        height: 50px;
-        bottom: 10px;
-      }
-      .card.is-active .card-fullname,
-      .card.is-active .card-jobtitle {
-        left: 86px;
-        transform: none;
-      }
-      .card.is-active .card-fullname {
-        bottom: 18px;
-        font-size: 19px;
-      }
-      .card.is-active .card-jobtitle {
-        bottom: 16px;
-        letter-spacing: 1px;
-        font-size: 10px;
-      }
+      /* =========================================================
+         HEADER
+      ========================================================= */
 
       .card-header {
         position: relative;
-        display: flex;
-        height: 200px;
-        flex-shrink: 0;
+
         width: 100%;
-        transition: 0.3s;
+        height: 245px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        overflow: hidden;
+
+        isolation: isolate;
+
+        transition: height 0.35s ease;
       }
+
+      /*
+       * Bottom fade from cover into white card content.
+       */
+      .card-header::after {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        z-index: 8;
+
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.02) 0%,
+          rgba(0, 0, 0, 0.03) 38%,
+          rgba(255, 255, 255, 0.02) 57%,
+          rgba(255, 255, 255, 0.16) 70%,
+          rgba(255, 255, 255, 0.94) 100%
+        );
+
+        pointer-events: none;
+      }
+
       .card-header * {
-        transition: 0.3s;
+        transition:
+          all 0.35s ease,
+          transform 0.35s ease;
       }
+
+      /* =========================================================
+         COVER IMAGE
+      ========================================================= */
 
       .card-cover {
         width: 100%;
         height: 100%;
+
         position: absolute;
-        top: -20%;
-        left: 0;
-        will-change: top;
+        inset: 0;
+
+        z-index: 0;
+
         background-size: cover;
         background-position: center;
-        filter: blur(30px);
-        transform: scale(1.2);
-        transition: 0.5s;
+
+        /*
+         * Slightly stronger blur than normal,
+         * allowing the animated effects to remain
+         * the visual focus.
+         */
+        filter: blur(24px);
+
+        transform: scale(1.16);
+
+        opacity: 0.82;
+
+        transition:
+          height 0.35s ease,
+          top 0.35s ease,
+          filter 0.35s ease,
+          opacity 0.35s ease,
+          transform 0.35s ease;
       }
 
-      .card-avatar {
-        width: 100px;
-        height: 100px;
-        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 50%;
-        -o-object-position: center;
-        object-position: center;
-        -o-object-fit: cover;
-        object-fit: cover;
+      /* =========================================================
+         PREMIUM ANIMATED COVER
+      ========================================================= */
+
+      .card-cover-blobs {
         position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%) translateY(-64px);
+
+        inset: 0;
+
+        z-index: 2;
+
+        overflow: hidden;
+
+        pointer-events: none;
       }
+
+      /*
+       * Shared blob style
+       */
+      .card-cover-blob {
+        position: absolute;
+
+        display: block;
+
+        border-radius: 50%;
+
+        filter: blur(42px);
+
+        opacity: 0.48;
+
+        will-change: transform;
+
+        pointer-events: none;
+      }
+
+      /*
+       * BLUE BLOB
+       */
+      .card-cover-blob.blob-blue {
+        width: 190px;
+        height: 190px;
+
+        left: -55px;
+        top: -75px;
+
+        background: rgba(37, 99, 235, 0.72);
+
+        animation: coverBlobBlue 13s ease-in-out infinite alternate;
+      }
+
+      /*
+       * PURPLE BLOB
+       */
+      .card-cover-blob.blob-purple {
+        width: 215px;
+        height: 215px;
+
+        right: -80px;
+        top: -95px;
+
+        background: rgba(124, 58, 237, 0.62);
+
+        animation: coverBlobPurple 16s ease-in-out infinite alternate;
+      }
+
+      /*
+       * CYAN BLOB
+       */
+      .card-cover-blob.blob-cyan {
+        width: 155px;
+        height: 155px;
+
+        right: 70px;
+        bottom: -105px;
+
+        background: rgba(6, 182, 212, 0.52);
+
+        animation: coverBlobCyan 14s ease-in-out infinite alternate;
+      }
+
+      /*
+       * Small violet ambient blob
+       */
+      .card-cover-blob.blob-violet {
+        width: 125px;
+        height: 125px;
+
+        left: 42%;
+        top: 35%;
+
+        background: rgba(99, 102, 241, 0.34);
+
+        animation: coverBlobViolet 11s ease-in-out infinite alternate;
+      }
+
+      /* =========================================================
+         TECHNICAL GRID
+      ========================================================= */
+
+      .card-cover-grid {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 3;
+
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.055) 1px,
+            transparent 1px
+          );
+
+        background-size: 32px 32px;
+
+        opacity: 0.62;
+
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.95) 0%,
+          rgba(0, 0, 0, 0.75) 50%,
+          transparent 100%
+        );
+
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.95) 0%,
+          rgba(0, 0, 0, 0.75) 50%,
+          transparent 100%
+        );
+
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         AMBIENT CENTER GLOW
+      ========================================================= */
+
+      .card-cover-glow {
+        position: absolute;
+
+        width: 280px;
+        height: 280px;
+
+        left: 50%;
+        top: 43%;
+
+        z-index: 4;
+
+        transform: translate(-50%, -50%);
+
+        border-radius: 50%;
+
+        background: radial-gradient(
+          circle,
+          rgba(96, 165, 250, 0.15) 0%,
+          rgba(96, 165, 250, 0.065) 30%,
+          rgba(96, 165, 250, 0.025) 48%,
+          transparent 72%
+        );
+
+        filter: blur(8px);
+
+        animation: coverGlow 8s ease-in-out infinite alternate;
+
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         DARK DEPTH OVERLAY
+      ========================================================= */
+
+      .card-cover-overlay {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 5;
+
+        background:
+          linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.2),
+            rgba(15, 23, 42, 0.05) 45%,
+            rgba(15, 23, 42, 0.28)
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(15, 23, 42, 0.04) 0%,
+            rgba(15, 23, 42, 0.1) 45%,
+            rgba(15, 23, 42, 0.55) 100%
+          );
+
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         LIGHT SWEEP
+      ========================================================= */
+
+      .card-cover-shine {
+        position: absolute;
+
+        top: 0;
+        left: -100%;
+
+        width: 42%;
+        height: 100%;
+
+        z-index: 6;
+
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.025) 35%,
+          rgba(255, 255, 255, 0.075) 50%,
+          rgba(255, 255, 255, 0.025) 65%,
+          transparent 100%
+        );
+
+        transform: skewX(-18deg);
+
+        animation: coverShine 10s ease-in-out infinite;
+
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         HEADER CONTENT LAYER
+      ========================================================= */
+
+      .card-avatar {
+        width: 132px;
+        height: 132px;
+
+        position: absolute;
+
+        left: 50%;
+        bottom: 0;
+
+        transform: translateX(-50%) translateY(-72px);
+
+        z-index: 12;
+
+        object-fit: cover;
+        object-position: center;
+
+        border-radius: 50%;
+
+        border: 5px solid rgba(255, 255, 255, 0.96);
+
+        background: #fff;
+
+        box-shadow:
+          0 12px 25px rgba(0, 0, 0, 0.22),
+          0 3px 8px rgba(0, 0, 0, 0.1),
+          0 0 0 5px rgba(255, 255, 255, 0.08);
+      }
+
+      /* =========================================================
+         FULL NAME
+      ========================================================= */
 
       .card-fullname {
         position: absolute;
-        bottom: 0;
-        font-size: 22px;
-        font-weight: 700;
-        text-align: center;
-        white-space: nowrap;
-        transform: translateY(-10px) translateX(-50%);
+
         left: 50%;
+
+        bottom: 30px;
+
+        z-index: 13;
+
+        width: calc(100% - 40px);
+
+        margin: 0;
+
+        transform: translateX(-50%);
+
+        color: #25263e;
+
+        font-size: 26px;
+        font-weight: 700;
+
+        line-height: 1.2;
+
+        text-align: center;
+
+        white-space: nowrap;
+
+        text-shadow:
+          0 1px 1px rgba(255, 255, 255, 0.75),
+          0 2px 5px rgba(255, 255, 255, 0.35);
+      }
+
+      /* =========================================================
+         JOB TITLE
+      ========================================================= */
+
+      .card-jobtitle {
+        position: absolute;
+
+        left: 50%;
+
+        bottom: 10px;
+
+        z-index: 13;
+
+        width: calc(100% - 40px);
+
+        margin: 0;
+
+        transform: translateX(-50%);
+
+        color: #5e6572;
+
+        font-size: 11px;
+        font-weight: 600;
+
+        line-height: 1.2;
+
+        letter-spacing: 1.8px;
+
+        text-align: center;
+
+        text-transform: uppercase;
+
+        white-space: nowrap;
       }
 
       .card-jobtitle span:not(:first-child) {
         display: none;
       }
 
-      .card-jobtitle {
-        position: absolute;
-        bottom: 0;
-        font-size: 11px;
-        white-space: nowrap;
-        font-weight: 500;
-        opacity: 0.7;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin: 0;
-        left: 50%;
-        transform: translateX(-50%) translateY(-7px);
+      /* =========================================================
+         ACTIVE HEADER
+         EXPERIENCE / CONTACT
+      ========================================================= */
+
+      .card.is-active .card-header {
+        height: 88px;
       }
+
+      .card.is-active .card-cover {
+        height: 110px;
+
+        top: -48px;
+
+        filter: blur(20px);
+
+        opacity: 0.78;
+
+        transform: scale(1.12);
+      }
+
+      .card.is-active .card-cover-blobs {
+        opacity: 0.75;
+      }
+
+      .card.is-active .card-cover-grid {
+        opacity: 0.42;
+
+        background-size: 28px 28px;
+      }
+
+      .card.is-active .card-cover-glow {
+        width: 180px;
+        height: 180px;
+
+        top: 50%;
+
+        opacity: 0.65;
+      }
+
+      .card.is-active .card-cover-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.32),
+          rgba(15, 23, 42, 0.1) 55%,
+          rgba(15, 23, 42, 0.36)
+        );
+      }
+
+      .card.is-active .card-avatar {
+        width: 56px;
+        height: 56px;
+
+        left: 20px;
+        bottom: 14px;
+
+        transform: none;
+
+        border-width: 3px;
+      }
+
+      .card.is-active .card-fullname,
+      .card.is-active .card-jobtitle {
+        left: 92px;
+
+        width: auto;
+
+        transform: none;
+
+        text-align: left;
+      }
+
+      .card.is-active .card-fullname {
+        bottom: 35px;
+
+        font-size: 18px;
+
+        line-height: 1.15;
+      }
+
+      .card.is-active .card-jobtitle {
+        bottom: 16px;
+
+        font-size: 9px;
+
+        line-height: 1.15;
+
+        letter-spacing: 1.3px;
+      }
+
+      /* =========================================================
+         CARD MAIN
+      ========================================================= */
 
       .card-main {
         position: relative;
+
         flex: 1;
+        min-height: 0;
+
         display: flex;
-        padding-top: 10px;
         flex-direction: column;
+
+        overflow: hidden;
+
+        background: #fff;
       }
 
-      .card-subtitle {
-        font-weight: 700;
-        font-size: 13px;
-        margin-bottom: 8px;
+      /* =========================================================
+         SECTIONS
+      ========================================================= */
+
+      .card-section {
+        display: none;
+
+        flex: 1;
+        min-height: 0;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        scrollbar-width: thin;
+
+        scrollbar-color: rgba(91, 104, 180, 0.35) transparent;
+
+        overscroll-behavior: contain;
       }
+
+      .card-section::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      .card-section::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .card-section::-webkit-scrollbar-thumb {
+        background: rgba(91, 104, 180, 0.35);
+
+        border-radius: 20px;
+      }
+
+      .card-section.is-active {
+        display: flex;
+
+        flex-direction: column;
+
+        animation: fadeIn 0.45s ease both;
+      }
+
+      /* =========================================================
+         ABOUT
+      ========================================================= */
+
+      #about {
+        overflow: hidden;
+      }
+
+      /* =========================================================
+         EXPERIENCE
+      ========================================================= */
+
+      #experience {
+        overflow-y: auto;
+      }
+
+      /* =========================================================
+         CONTACT
+      ========================================================= */
+
+      #contact {
+        overflow-y: auto;
+      }
+
+      /* =========================================================
+         CONTENT
+      ========================================================= */
 
       .card-content {
-        padding: 20px;
+        padding: 28px 34px 20px;
       }
 
-      .card-desc {
-        line-height: 1.6;
-        color: #636b6f;
-        font-size: 14px;
-        margin: 0;
-        font-weight: 400;
-        font-family: "DM Sans", sans-serif;
+      #about .card-content {
+        padding: 30px 34px 10px;
       }
+
+      #experience .card-content {
+        padding-bottom: 25px;
+      }
+
+      #contact .card-content {
+        padding-bottom: 30px;
+      }
+
+      /* =========================================================
+         SECTION TITLE
+      ========================================================= */
+
+      .card-subtitle {
+        position: relative;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        margin: 0 0 14px;
+
+        padding-bottom: 7px;
+
+        color: #2b2c48;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        letter-spacing: 1px;
+      }
+
+      .card-subtitle::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        bottom: 0;
+
+        width: 32px;
+        height: 2px;
+
+        border-radius: 10px;
+
+        background: linear-gradient(to right, #8a84ff, #53c8ef);
+      }
+
+      /* =========================================================
+         ABOUT
+      ========================================================= */
+
+      .card-desc {
+        margin: 0;
+
+        color: #626a74;
+
+        font-family: "DM Sans", sans-serif;
+
+        font-size: 15px;
+        font-weight: 400;
+
+        line-height: 1.72;
+      }
+
+      #about .card-desc + .card-desc {
+        margin-top: 13px;
+      }
+
+      /* =========================================================
+         SOCIAL LINKS
+      ========================================================= */
 
       .card-social {
         display: flex;
+
         align-items: center;
-        padding: 0 20px;
-        margin-bottom: 30px;
+
+        flex-shrink: 0;
+
+        padding: 8px 34px 20px;
+
+        margin-top: auto;
       }
-      .card-social svg {
-        fill: #a5b5ce;
-        width: 16px;
-        display: block;
-        transition: 0.3s;
-      }
+
       .card-social a {
-        color: #8797a1;
-        height: 32px;
-        width: 32px;
+        width: 36px;
+        height: 36px;
+
         display: inline-flex;
+
         align-items: center;
         justify-content: center;
-        transition: 0.3s;
-        background-color: rgba(93, 133, 193, 0.05);
-        border-radius: 50%;
+
         margin-right: 10px;
+
+        color: #8797a1;
+
+        text-decoration: none;
+
+        background: rgba(93, 133, 193, 0.06);
+
+        border: 1px solid rgba(93, 133, 193, 0.08);
+
+        border-radius: 50%;
+
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease,
+          box-shadow 0.25s ease;
       }
-      .card-social a:hover svg {
-        fill: #637faa;
+
+      .card-social a.linkedin {
+        color: #0a66c2;
       }
+
+      .card-social a.facebook {
+        color: #1877f2;
+      }
+
+      .card-social a.github {
+        color: #181717;
+      }
+
+      .card-social a.discord {
+        color: #5865f2;
+      }
+
+      .card-social a.instagram {
+        color: #e4405f;
+      }
+
       .card-social a:last-child {
         margin-right: 0;
       }
 
+      .card-social a:hover {
+        transform: translateY(-3px);
+
+        filter: brightness(0.9);
+
+        background: rgba(93, 133, 193, 0.1);
+
+        box-shadow: 0 6px 15px rgba(55, 65, 81, 0.12);
+      }
+
+      .card-social svg {
+        width: 16px;
+        height: 16px;
+
+        display: block;
+
+        fill: currentColor;
+
+        transition:
+          fill 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .card-social a:hover svg {
+        fill: currentColor;
+
+        transform: scale(1.05);
+      }
+
+      /* =========================================================
+         NAVIGATION BUTTONS
+      ========================================================= */
+
       .card-buttons {
         display: flex;
-        background-color: #fff;
-        margin-top: auto;
-        position: sticky;
-        bottom: 0;
-        left: 0;
+
+        width: 100%;
+
+        flex-shrink: 0;
+
+        background: rgba(255, 255, 255, 0.98);
+
+        border-top: 1px solid #eef0f5;
+
+        z-index: 20;
       }
+
       .card-buttons button {
-        flex: 1 1 auto;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background: 0;
-        font-size: 13px;
+        flex: 1 1 0;
+
+        min-width: 0;
+
+        padding: 15px 6px 13px;
+
         border: 0;
-        padding: 15px 5px;
-        cursor: pointer;
-        color: #5c5c6d;
-        transition: 0.3s;
-        font-family: "Jost", sans-serif;
-        font-weight: 500;
-        outline: 0;
+
         border-bottom: 3px solid transparent;
+
+        outline: none;
+
+        background: transparent;
+
+        color: #697080;
+
+        font-family: "Jost", sans-serif;
+
+        font-size: 12px;
+        font-weight: 600;
+
+        letter-spacing: 0.3px;
+
+        cursor: pointer;
+
+        user-select: none;
+
+        transition:
+          color 0.25s ease,
+          background 0.25s ease,
+          border-color 0.25s ease;
       }
-      .card-buttons button.is-active,
+
       .card-buttons button:hover {
         color: #2b2c48;
-        border-bottom: 3px solid #8a84ff;
+
+        background: rgba(138, 132, 255, 0.045);
+      }
+
+      .card-buttons button.is-active {
+        color: #2b2c48;
+
+        border-bottom-color: #8a84ff;
+
         background: linear-gradient(
           to bottom,
           rgba(127, 199, 231, 0) 0%,
-          rgba(207, 204, 255, 0.2) 44%,
-          rgba(211, 226, 255, 0.4) 100%
+          rgba(207, 204, 255, 0.14) 55%,
+          rgba(211, 226, 255, 0.3) 100%
         );
       }
 
-      .card-section {
-        display: none;
-      }
-      .card-section.is-active {
-        display: block;
-        -webkit-animation: fadeIn 0.6s both;
-        animation: fadeIn 0.6s both;
+      /* =========================================================
+         EXPERIENCE TIMELINE
+      ========================================================= */
+
+      .card-timeline {
+        position: relative;
+
+        margin-top: 26px;
       }
 
-      @-webkit-keyframes fadeIn {
+      .card-timeline::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        bottom: 0;
+
+        left: 35px;
+
+        width: 2px;
+
+        background: linear-gradient(
+          to bottom,
+          rgba(134, 214, 243, 0),
+          #6576d1 12%,
+          #516acc 88%,
+          rgba(134, 214, 243, 0)
+        );
+      }
+
+      .card-item {
+        position: relative;
+
+        padding-left: 60px;
+
+        padding-right: 15px;
+
+        padding-bottom: 28px;
+
+        z-index: 1;
+      }
+
+      .card-item:last-child {
+        padding-bottom: 5px;
+      }
+
+      .card-item::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        left: 30px;
+
+        width: 12px;
+        height: 12px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border: 3px solid #fff;
+
+        border-radius: 50%;
+
+        background: #6273cc;
+
+        box-shadow: 0 0 0 2px rgba(98, 115, 204, 0.14);
+
+        z-index: 2;
+      }
+
+      .card-item-title {
+        margin: 0 0 7px;
+
+        color: #303247;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        line-height: 1.45;
+      }
+
+      .card-item-title span {
+        color: #5c6bc0;
+      }
+
+      .card-item-desc {
+        color: #6f7480;
+
+        font-family: "DM Sans", sans-serif;
+
+        font-size: 13px;
+
+        line-height: 1.65;
+      }
+
+      .card-item-desc strong {
+        color: #555b68;
+
+        font-weight: 600;
+      }
+
+      /* =========================================================
+         CONTACT
+      ========================================================= */
+
+      .card-contact-wrapper {
+        margin-top: 22px;
+      }
+
+      .card-contact {
+        display: flex;
+
+        align-items: flex-start;
+
+        min-height: 40px;
+
+        color: #6f6f7b;
+
+        font-family: "DM Sans", sans-serif;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        cursor: default;
+      }
+
+      .card-contact + .card-contact {
+        margin-top: 17px;
+      }
+
+      .card-contact svg {
+        flex-shrink: 0;
+
+        width: 30px;
+        height: 34px;
+
+        margin-right: 13px;
+
+        padding-right: 11px;
+
+        color: #7f8dc4;
+
+        border-right: 1px solid #dfe2ec;
+
+        stroke: currentColor;
+      }
+
+      /* =========================================================
+         WORK TOGETHER BUTTON
+      ========================================================= */
+
+      .contact-me {
+        width: 100%;
+
+        margin-top: 38px;
+
+        padding: 13px 18px;
+
+        border: 0;
+
+        outline: none;
+
+        border-radius: 7px;
+
+        background: linear-gradient(
+          to right,
+          rgba(83, 200, 239, 0.95) 0%,
+          rgba(81, 106, 204, 0.95) 96%
+        );
+
+        box-shadow: 0 6px 14px rgba(81, 106, 204, 0.18);
+
+        color: #fff;
+
+        font-family: "Jost", sans-serif;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        letter-spacing: 0.6px;
+
+        cursor: pointer;
+
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .contact-me:hover {
+        transform: translateY(-2px);
+
+        box-shadow: 0 9px 20px rgba(81, 106, 204, 0.25);
+      }
+
+      .contact-me:active {
+        transform: translateY(0);
+      }
+
+      /* =========================================================
+         MODAL
+      ========================================================= */
+
+      .modal {
+        display: none;
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 1000;
+
+        width: 100%;
+        height: 100%;
+
+        padding: 20px;
+
+        background: rgba(15, 23, 42, 0.58);
+
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+
+        animation: fadeIn 0.25s ease;
+      }
+
+      .modal-content {
+        position: relative;
+
+        width: min(100%, 420px);
+
+        margin: 10vh auto 0;
+
+        padding: 30px;
+
+        background: #fff;
+
+        border-radius: 14px;
+
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+
+        animation: slideIn 0.3s ease;
+      }
+
+      .close {
+        position: absolute;
+
+        top: 13px;
+        right: 17px;
+
+        width: 34px;
+        height: 34px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        color: #888;
+
+        font-size: 28px;
+
+        font-weight: 400;
+
+        line-height: 1;
+
+        border: 0;
+
+        background: transparent;
+
+        border-radius: 50%;
+
+        cursor: pointer;
+
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .close:hover {
+        color: #222;
+
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .modal-content h3 {
+        margin: 0 0 9px;
+
+        color: #2b2c48;
+
+        font-size: 21px;
+
+        font-weight: 700;
+      }
+
+      .modal-content > p {
+        margin: 0;
+
+        color: #6f6f7b;
+
+        font-family: "DM Sans", sans-serif;
+
+        font-size: 14px;
+      }
+
+      .contact-options {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 11px;
+
+        margin-top: 22px;
+      }
+
+      .contact-option {
+        display: flex;
+
+        align-items: center;
+
+        padding: 14px;
+
+        color: #2b2c48;
+
+        text-decoration: none;
+
+        background: rgba(138, 132, 255, 0.055);
+
+        border: 1px solid rgba(138, 132, 255, 0.13);
+
+        border-radius: 9px;
+
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .contact-option:hover {
+        transform: translateY(-2px);
+
+        background: rgba(138, 132, 255, 0.1);
+
+        box-shadow: 0 5px 14px rgba(138, 132, 255, 0.1);
+      }
+
+      .contact-option svg {
+        width: 24px;
+        height: 24px;
+
+        flex-shrink: 0;
+
+        margin-right: 14px;
+
+        fill: #7b76e8;
+      }
+
+      .contact-option .option-text {
+        display: flex;
+
+        flex-direction: column;
+
+        flex-grow: 1;
+      }
+
+      .contact-option span {
+        color: #34364c;
+
+        font-size: 14px;
+
+        font-weight: 600;
+      }
+
+      .contact-option small {
+        margin-top: 2px;
+
+        color: #777c88;
+
+        font-family: "DM Sans", sans-serif;
+
+        font-size: 12px;
+      }
+
+      /* =========================================================
+         ANIMATIONS
+      ========================================================= */
+
+      @keyframes coverBlobBlue {
         0% {
-          opacity: 0;
-          transform: translatey(40px);
+          transform: translate3d(0, 0, 0) scale(1);
         }
+
+        50% {
+          transform: translate3d(65px, 35px, 0) scale(1.12);
+        }
+
         100% {
-          opacity: 1;
+          transform: translate3d(20px, 82px, 0) scale(0.94);
+        }
+      }
+
+      @keyframes coverBlobPurple {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        50% {
+          transform: translate3d(-75px, 40px, 0) scale(1.14);
+        }
+
+        100% {
+          transform: translate3d(-25px, 92px, 0) scale(0.93);
+        }
+      }
+
+      @keyframes coverBlobCyan {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        50% {
+          transform: translate3d(-50px, -48px, 0) scale(1.12);
+        }
+
+        100% {
+          transform: translate3d(38px, -18px, 0) scale(0.95);
+        }
+      }
+
+      @keyframes coverBlobViolet {
+        0% {
+          transform: translate3d(0, 0, 0) scale(0.9);
+        }
+
+        50% {
+          transform: translate3d(45px, -25px, 0) scale(1.08);
+        }
+
+        100% {
+          transform: translate3d(-35px, 35px, 0) scale(0.95);
+        }
+      }
+
+      @keyframes coverGlow {
+        0% {
+          opacity: 0.42;
+
+          transform: translate(-50%, -50%) scale(0.82);
+        }
+
+        100% {
+          opacity: 0.9;
+
+          transform: translate(-50%, -50%) scale(1.16);
+        }
+      }
+
+      @keyframes coverShine {
+        0% {
+          left: -100%;
+        }
+
+        25% {
+          left: 130%;
+        }
+
+        100% {
+          left: 130%;
         }
       }
 
       @keyframes fadeIn {
         0% {
           opacity: 0;
-          transform: translatey(40px);
+
+          transform: translateY(20px);
         }
+
         100% {
           opacity: 1;
+
+          transform: translateY(0);
         }
-      }
-      .card-timeline {
-        margin-top: 30px;
-        position: relative;
-      }
-      .card-timeline:after {
-        background: linear-gradient(
-          to top,
-          rgba(134, 214, 243, 0) 0%,
-          #516acc 100%
-        );
-        content: "";
-        left: 42px;
-        width: 2px;
-        top: 0;
-        height: 100%;
-        position: absolute;
-      }
-
-      .card-item {
-        position: relative;
-        padding-left: 60px;
-        padding-right: 20px;
-        padding-bottom: 30px;
-        z-index: 1;
-      }
-      .card-item:last-child {
-        padding-bottom: 5px;
-      }
-      .card-item:after {
-        content: attr(data-year);
-        position: absolute;
-        top: 0;
-        left: 37px;
-        width: 8px;
-        height: 8px;
-        line-height: 0.6;
-        border: 2px solid #fff;
-        font-size: 11px;
-        text-indent: -35px;
-        border-radius: 50%;
-        color: rgba(134, 134, 134, 0.7);
-        background: linear-gradient(to bottom, #a0aee3 0%, #516acc 100%);
-      }
-
-      .card-item-title {
-        font-weight: 500;
-        font-size: 14px;
-        margin-bottom: 5px;
-      }
-
-      .card-item-desc {
-        font-size: 13px;
-        color: #6f6f7b;
-        line-height: 1.5;
-        font-family: "DM Sans", sans-serif;
-      }
-
-      .card-contact-wrapper {
-        margin-top: 20px;
-      }
-
-      .card-contact {
-        display: flex;
-        align-items: center;
-        font-size: 13px;
-        color: #6f6f7b;
-        font-family: "DM Sans", sans-serif;
-        line-height: 1.6;
-        cursor: pointer;
-      }
-      .card-contact + .card-contact {
-        margin-top: 16px;
-      }
-      .card-contact svg {
-        flex-shrink: 0;
-        width: 30px;
-        min-height: 34px;
-        margin-right: 12px;
-        transition: 0.3s;
-        padding-right: 12px;
-        border-right: 1px solid #dfe2ec;
-      }
-
-      .contact-me {
-        border: 0;
-        outline: none;
-        background: linear-gradient(
-          to right,
-          rgba(83, 200, 239, 0.8) 0%,
-          rgba(81, 106, 204, 0.8) 96%
-        );
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        color: #fff;
-        padding: 12px 16px;
-        width: 100%;
-        border-radius: 5px;
-        margin-top: 50px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        font-family: "Jost", sans-serif;
-        transition: 0.3s;
-      }
-      .contact-me:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-      }
-
-      /* Modal Styles */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        animation: fadeIn 0.3s;
-      }
-
-      .modal-content {
-        background-color: white;
-        margin: 15% auto;
-        padding: 30px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 400px;
-        position: relative;
-        animation: slideIn 0.3s;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .close {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        font-size: 28px;
-        cursor: pointer;
-        color: #888;
-        line-height: 1;
-      }
-
-      .close:hover {
-        color: #000;
-      }
-
-      .modal-content h3 {
-        margin: 0 0 10px 0;
-        color: #2b2c48;
-        font-size: 20px;
-      }
-
-      .modal-content p {
-        color: #6f6f7b;
-        margin-bottom: 20px;
-        font-size: 14px;
-      }
-
-      .contact-options {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
-      }
-
-      .contact-option {
-        display: flex;
-        align-items: center;
-        padding: 15px;
-        border-radius: 8px;
-        text-decoration: none;
-        color: #2b2c48;
-        background: rgba(138, 132, 255, 0.1);
-        border: 1px solid rgba(138, 132, 255, 0.2);
-        transition: all 0.3s ease;
-      }
-
-      .contact-option:hover {
-        background: rgba(138, 132, 255, 0.2);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(138, 132, 255, 0.1);
-      }
-
-      .contact-option svg {
-        width: 24px;
-        height: 24px;
-        margin-right: 15px;
-        fill: #8a84ff;
-      }
-
-      .contact-option .option-text {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-      }
-
-      .contact-option span {
-        font-weight: 600;
-        font-size: 14px;
-      }
-
-      .contact-option small {
-        color: #6f6f7b;
-        font-size: 12px;
-        margin-top: 2px;
       }
 
       @keyframes slideIn {
         from {
           opacity: 0;
-          transform: translateY(-50px);
+
+          transform: translateY(-30px) scale(0.98);
         }
+
         to {
           opacity: 1;
-          transform: translateY(0);
+
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* =========================================================
+         REDUCED MOTION
+      ========================================================= */
+
+      @media (prefers-reduced-motion: reduce) {
+        .card-cover-blob,
+        .card-cover-glow,
+        .card-cover-shine {
+          animation: none !important;
+        }
+
+        .card-section.is-active {
+          animation: none;
+        }
+
+        .modal,
+        .modal-content {
+          animation: none;
+        }
+      }
+
+      /* =========================================================
+         TABLET
+      ========================================================= */
+
+      @media (max-width: 700px) {
+        body {
+          padding: 15px;
+        }
+
+        .card {
+          width: 100%;
+
+          height: calc(100dvh - 30px);
+
+          min-height: 620px;
+
+          border-radius: 17px;
+        }
+
+        .card[data-state="#about"],
+        .card[data-state="#contact"],
+        .card[data-state="#experience"] {
+          height: calc(100dvh - 30px);
+        }
+
+        .card-header {
+          height: 220px;
+        }
+
+        .card-avatar {
+          width: 115px;
+          height: 115px;
+
+          transform: translateX(-50%) translateY(-64px);
+        }
+
+        .card-fullname {
+          bottom: 28px;
+
+          font-size: 22px;
+        }
+
+        .card-jobtitle {
+          bottom: 9px;
+
+          font-size: 10px;
+        }
+
+        .card-content {
+          padding: 25px 25px 18px;
+        }
+
+        #about .card-content {
+          padding: 26px 25px 10px;
+        }
+
+        .card-social {
+          padding-left: 25px;
+
+          padding-right: 25px;
+
+          padding-bottom: 18px;
+        }
+
+        .card-timeline {
+          margin-top: 22px;
+        }
+
+        .card-item {
+          padding-left: 56px;
+
+          padding-right: 8px;
+        }
+
+        .card-timeline::after {
+          left: 31px;
+        }
+
+        .card-item::after {
+          left: 26px;
+        }
+
+        /*
+         * Tablet animation tuning
+         */
+        .card-cover-blob.blob-blue {
+          width: 160px;
+          height: 160px;
+        }
+
+        .card-cover-blob.blob-purple {
+          width: 180px;
+          height: 180px;
+        }
+
+        .card-cover-blob.blob-cyan {
+          width: 135px;
+          height: 135px;
+        }
+
+        .card-cover-grid {
+          background-size: 28px 28px;
+        }
+      }
+
+      /* =========================================================
+         MOBILE
+      ========================================================= */
+
+      @media (max-width: 520px) {
+        body {
+          padding: 10px;
+        }
+
+        .card {
+          width: 100%;
+
+          height: calc(100dvh - 20px);
+
+          min-height: 0;
+
+          border-radius: 15px;
+
+          box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .card[data-state="#about"],
+        .card[data-state="#contact"],
+        .card[data-state="#experience"] {
+          height: calc(100dvh - 20px);
+        }
+
+        .card-header {
+          height: 205px;
+        }
+
+        .card-avatar {
+          width: 105px;
+          height: 105px;
+
+          transform: translateX(-50%) translateY(-58px);
+
+          border-width: 4px;
+        }
+
+        .card-fullname {
+          bottom: 28px;
+
+          width: calc(100% - 25px);
+
+          font-size: 20px;
+
+          line-height: 1.15;
+        }
+
+        .card-jobtitle {
+          bottom: 9px;
+
+          width: calc(100% - 25px);
+
+          font-size: 9px;
+
+          line-height: 1.15;
+
+          letter-spacing: 1.2px;
+        }
+
+        /* =====================================================
+           ACTIVE MOBILE HEADER
+        ====================================================== */
+
+        .card.is-active .card-header {
+          height: 80px;
+        }
+
+        .card.is-active .card-cover {
+          height: 100px;
+
+          top: -38px;
+
+          filter: blur(17px);
+        }
+
+        .card.is-active .card-avatar {
+          width: 48px;
+          height: 48px;
+
+          left: 15px;
+          bottom: 11px;
+
+          transform: none;
+        }
+
+        .card.is-active .card-fullname,
+        .card.is-active .card-jobtitle {
+          left: 77px;
+
+          width: auto;
+
+          text-align: left;
+
+          transform: none;
+        }
+
+        .card.is-active .card-fullname {
+          bottom: 29px;
+
+          font-size: 16px;
+
+          line-height: 1.15;
+        }
+
+        .card.is-active .card-jobtitle {
+          bottom: 12px;
+
+          font-size: 8px;
+
+          line-height: 1.15;
+
+          letter-spacing: 1px;
+        }
+
+        /*
+         * Mobile cover animation
+         */
+        .card-cover-grid {
+          background-size: 25px 25px;
+
+          opacity: 0.48;
+        }
+
+        .card-cover-blob {
+          filter: blur(32px);
+
+          opacity: 0.42;
+        }
+
+        .card-cover-blob.blob-blue {
+          width: 130px;
+          height: 130px;
+
+          left: -45px;
+          top: -55px;
+        }
+
+        .card-cover-blob.blob-purple {
+          width: 145px;
+          height: 145px;
+
+          right: -55px;
+          top: -60px;
+        }
+
+        .card-cover-blob.blob-cyan {
+          width: 115px;
+          height: 115px;
+
+          right: 35px;
+          bottom: -75px;
+        }
+
+        .card-cover-blob.blob-violet {
+          width: 90px;
+          height: 90px;
+        }
+
+        .card-cover-glow {
+          width: 210px;
+          height: 210px;
+        }
+
+        /* =====================================================
+           MOBILE CONTENT
+        ====================================================== */
+
+        .card-content {
+          padding: 21px 20px 15px;
+        }
+
+        #about .card-content {
+          padding: 22px 20px 8px;
+        }
+
+        .card-subtitle {
+          margin-bottom: 12px;
+
+          font-size: 12px;
+        }
+
+        .card-desc {
+          font-size: 13.5px;
+
+          line-height: 1.65;
+        }
+
+        #about .card-desc + .card-desc {
+          margin-top: 11px;
+        }
+
+        /* =====================================================
+           MOBILE SOCIAL
+        ====================================================== */
+
+        .card-social {
+          padding: 7px 20px 15px;
+        }
+
+        .card-social a {
+          width: 34px;
+          height: 34px;
+
+          margin-right: 8px;
+        }
+
+        .card-social svg {
+          width: 15px;
+          height: 15px;
+        }
+
+        /* =====================================================
+           MOBILE NAVIGATION
+        ====================================================== */
+
+        .card-buttons button {
+          padding: 13px 3px 11px;
+
+          font-size: 10.5px;
+
+          letter-spacing: 0.15px;
+        }
+
+        /* =====================================================
+           MOBILE EXPERIENCE
+        ====================================================== */
+
+        .card-timeline {
+          margin-top: 20px;
+        }
+
+        .card-item {
+          padding-left: 50px;
+
+          padding-right: 2px;
+
+          padding-bottom: 25px;
+        }
+
+        .card-timeline::after {
+          left: 27px;
+        }
+
+        .card-item::after {
+          left: 22px;
+
+          width: 11px;
+          height: 11px;
+        }
+
+        .card-item-title {
+          font-size: 14px;
+        }
+
+        .card-item-desc {
+          font-size: 12.5px;
+
+          line-height: 1.6;
+        }
+
+        /* =====================================================
+           MOBILE CONTACT
+        ====================================================== */
+
+        .card-contact {
+          font-size: 12.5px;
+        }
+
+        .contact-me {
+          margin-top: 30px;
+        }
+
+        /* =====================================================
+           MOBILE MODAL
+        ====================================================== */
+
+        .modal {
+          padding: 15px;
+        }
+
+        .modal-content {
+          margin-top: 8vh;
+
+          padding: 25px 20px 20px;
+        }
+      }
+
+      /* =========================================================
+         SMALL HEIGHT DEVICES
+      ========================================================= */
+
+      @media (max-height: 720px) and (min-width: 521px) {
+        body {
+          padding: 12px;
+        }
+
+        .card {
+          height: calc(100dvh - 24px);
+
+          min-height: 0;
+        }
+
+        .card[data-state="#about"],
+        .card[data-state="#contact"],
+        .card[data-state="#experience"] {
+          height: calc(100dvh - 24px);
+        }
+
+        .card-header {
+          height: 205px;
+        }
+
+        .card-avatar {
+          width: 110px;
+          height: 110px;
+
+          transform: translateX(-50%) translateY(-58px);
+        }
+
+        .card-fullname {
+          bottom: 27px;
+
+          font-size: 22px;
+        }
+
+        .card-jobtitle {
+          bottom: 8px;
+
+          font-size: 9px;
+        }
+
+        #about .card-content {
+          padding-top: 22px;
+        }
+
+        .card-desc {
+          font-size: 14px;
+
+          line-height: 1.6;
+        }
+
+        .card-social {
+          padding-bottom: 12px;
+        }
+
+        .card-buttons button {
+          padding-top: 11px;
+
+          padding-bottom: 9px;
+        }
+      }
+
+      /* =========================================================
+         VERY SMALL MOBILE HEIGHT
+      ========================================================= */
+
+      @media (max-width: 520px) and (max-height: 700px) {
+        .card-header {
+          height: 185px;
+        }
+
+        .card-avatar {
+          width: 92px;
+          height: 92px;
+
+          transform: translateX(-50%) translateY(-48px);
+        }
+
+        .card-fullname {
+          bottom: 25px;
+
+          font-size: 18px;
+        }
+
+        .card-jobtitle {
+          bottom: 7px;
+
+          font-size: 8px;
+        }
+
+        #about .card-content {
+          padding-top: 17px;
+        }
+
+        .card-desc {
+          font-size: 12.5px;
+
+          line-height: 1.55;
+        }
+
+        .card-social {
+          padding-bottom: 10px;
+        }
+
+        .card-social a {
+          width: 31px;
+          height: 31px;
+        }
+
+        .card-buttons button {
+          padding-top: 10px;
+
+          padding-bottom: 8px;
+
+          font-size: 9.5px;
+        }
+
+        /*
+         * Very small cover
+         */
+        .card-cover-grid {
+          background-size: 22px 22px;
+        }
+
+        .card-cover-blob {
+          filter: blur(28px);
         }
       }
     </style>
   </head>
+
   <body>
+    <!-- =========================================================
+         PROFILE CARD
+    ========================================================== -->
+
     <div class="card" data-state="#about">
+      <!-- =======================================================
+           HEADER
+      ======================================================== -->
+
       <div class="card-header">
+        <!-- =====================================================
+             COVER IMAGE
+        ====================================================== -->
+
         <div
           class="card-cover"
           style="
             background-image: url(&quot;https://images.unsplash.com/photo-1599507593548-0187ac4043c6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171&quot;);
           "
         ></div>
+
+        <!-- =====================================================
+             ANIMATED GRADIENT BLOBS
+        ====================================================== -->
+
+        <div class="card-cover-blobs" aria-hidden="true">
+          <span class="card-cover-blob blob-blue"></span>
+
+          <span class="card-cover-blob blob-purple"></span>
+
+          <span class="card-cover-blob blob-cyan"></span>
+
+          <span class="card-cover-blob blob-violet"></span>
+        </div>
+
+        <!-- =====================================================
+             TECH GRID
+        ====================================================== -->
+
+        <div class="card-cover-grid" aria-hidden="true"></div>
+
+        <!-- =====================================================
+             AMBIENT GLOW
+        ====================================================== -->
+
+        <div class="card-cover-glow" aria-hidden="true"></div>
+
+        <!-- =====================================================
+             DARK DEPTH OVERLAY
+        ====================================================== -->
+
+        <div class="card-cover-overlay" aria-hidden="true"></div>
+
+        <!-- =====================================================
+             LIGHT SWEEP
+        ====================================================== -->
+
+        <div class="card-cover-shine" aria-hidden="true"></div>
+
+        <!-- =====================================================
+             AVATAR
+        ====================================================== -->
+
         <img
           class="card-avatar"
           src="images/shahadat.jpeg"
@@ -517,32 +2085,71 @@
           "
           alt="Mohammad Shahadat Hossain"
         />
+
+        <!-- =====================================================
+             NAME
+        ====================================================== -->
+
         <h1 class="card-fullname">Mohammad Shahadat Hossain</h1>
+
+        <!-- =====================================================
+             ROTATING JOB TITLE
+        ====================================================== -->
+
         <h2 class="card-jobtitle">
           <span>Software Engineer</span>
+
+          <span>ERP Developer</span>
+
           <span>Laravel Developer</span>
+
           <span>Full Stack Web Developer</span>
         </h2>
       </div>
+
+      <!-- =========================================================
+           MAIN
+      ========================================================== -->
+
       <div class="card-main">
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+
         <div class="card-section is-active" id="about">
           <div class="card-content">
             <div class="card-subtitle">ABOUT</div>
+
             <p class="card-desc">
-              I design and develop modern web applications with a focus on
-              performance, security, and user experience. My toolkit includes
-              Laravel, PHP, JavaScript, and RESTful APIs, and I love
-              collaborating with teams to bring ideas to life through clean,
-              maintainable code. I'm also familiar with Next.js and Django,
-              allowing me to work across diverse frameworks and adapt to modern
-              full-stack development environments.
+              I’m a Software Engineer and Laravel Developer specializing in
+              Laravel, PHP, RESTful APIs, and full-stack web development. I
+              build scalable and maintainable applications with a focus on clean
+              architecture, performance, security, and real-world business
+              needs.
+            </p>
+
+            <p class="card-desc">
+              Currently working on enterprise ERP solutions, I develop
+              business-focused systems from the ground up. I also work with
+              JavaScript, SQL, Next.js, and Django, while expanding my skills in
+              Python, FastAPI, cloud technologies, and AI-powered applications.
             </p>
           </div>
+
+          <!-- =================================================
+               SOCIAL LINKS
+          ================================================== -->
+
           <div class="card-social">
+            <!-- LinkedIn -->
+
             <a
               href="https://www.linkedin.com/in/mohammad-shahadat-hossain-54351a139/"
+              class="linkedin"
               target="_blank"
+              rel="noopener noreferrer"
               title="LinkedIn"
+              aria-label="LinkedIn"
             >
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -550,10 +2157,16 @@
                 />
               </svg>
             </a>
+
+            <!-- Facebook -->
+
             <a
               href="https://www.facebook.com/md.shahadat.5"
+              class="facebook"
               target="_blank"
+              rel="noopener noreferrer"
               title="Facebook"
+              aria-label="Facebook"
             >
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -561,10 +2174,16 @@
                 />
               </svg>
             </a>
+
+            <!-- GitHub -->
+
             <a
               href="https://github.com/Ami-Shahadat-Hossain"
+              class="github"
               target="_blank"
+              rel="noopener noreferrer"
               title="GitHub"
+              aria-label="GitHub"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 96">
                 <path
@@ -572,10 +2191,16 @@
                 />
               </svg>
             </a>
+
+            <!-- Discord -->
+
             <a
               href="https://discord.com/users/1072566988372713473"
+              class="discord"
               target="_blank"
+              rel="noopener noreferrer"
               title="Discord"
+              aria-label="Discord"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -586,18 +2211,26 @@
                 />
               </svg>
             </a>
+
+            <!-- Instagram -->
+
             <a
               href="https://www.instagram.com/_shahadat.hossain/"
+              class="instagram"
               target="_blank"
+              rel="noopener noreferrer"
               title="Instagram"
+              aria-label="Instagram"
             >
               <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M301 256c0 24.852-20.148 45-45 45s-45-20.148-45-45 20.148-45 45-45 45 20.148 45 45zm0 0"
                 />
+
                 <path
                   d="M332 120H180c-33.086 0-60 26.914-60 60v152c0 33.086 26.914 60 60 60h152c33.086 0 60-26.914 60-60V180c0-33.086-26.914-60-60-60zm-76 211c-41.355 0-75-33.645-75-75s33.645-75 75-75 75 33.645 75 75-33.645 75-75 75zm86-146c-8.285 0-15-6.715-15-15s6.715-15 15-15 15 6.715 15 15-6.715 15-15 15zm0 0"
                 />
+
                 <path
                   d="M377 0H135C60.562 0 0 60.563 0 135v242c0 74.438 60.563 135 135 135h242c74.438 0 135-60.563 135-135V135C512 60.562 451.437 0 377 0zm45 332c0 49.625-40.375 90-90 90H180c-49.625 0-90-40.375-90-90V180c0-49.625 40.375-90 90-90h152c49.625 0 90 40.375 90 90zm0 0"
                 />
@@ -605,59 +2238,129 @@
             </a>
           </div>
         </div>
+
+        <!-- =====================================================
+             EXPERIENCE
+        ====================================================== -->
+
         <div class="card-section" id="experience">
           <div class="card-content">
-            <div class="card-subtitle">TRAINING & WORK EXPERIENCE</div>
+            <div class="card-subtitle">WORK EXPERIENCE</div>
+
             <div class="card-timeline">
-              <div class="card-item" data-year="2022">
+              <!-- Executive ERP -->
+
+              <div class="card-item" data-year="2026">
                 <div class="card-item-title">
-                  Certified in Web Development with PHP & Laravel From
-                  <span>Ostad</span>
+                  Executive (ERP) at
+                  <span> HKD Outdoor Innovations Ltd. </span>
                 </div>
+
                 <div class="card-item-desc">
-                  Top Performer in Full Stack Web Development (PHP & Laravel).
+                  <strong> Jan 2026 – Present </strong>
+
+                  <br />
+
+                  Leading the end-to-end development of a comprehensive ERP
+                  system from scratch. Working across Buyer, Administration,
+                  Management, Development, Sales, CAD, MC, Supplier, and BOM
+                  modules, with a strong focus on business workflows, database
+                  architecture, Laravel-based backend development, RESTful APIs,
+                  and scalable enterprise solutions.
                 </div>
               </div>
+
+              <!-- Assistant Software Engineer -->
+
               <div class="card-item" data-year="2023">
-                <div class="card-item-title">
-                  Certified in PHP With Laravel Framework From
-                  <span>BASIS-SEIP</span>
-                </div>
-                <div class="card-item-desc">
-                  Designed, Implemented, Documented and successfully deployed
-                  e-commerce project using PHP and Laravel.
-                </div>
-              </div>
-              <div class="card-item" data-year="2023">
-                <div class="card-item-title">
-                  Junior Software Engineer at
-                  <span>Tappware Solutions Limited</span>
-                </div>
-                <div class="card-item-desc">
-                  Leading the end-to-end development of a dynamic web
-                  application using Laravel framework with a focus on
-                  integrating RESTful APIs to ensure seamless functionality and
-                  feature incorporation into the user interface.
-                </div>
-              </div>
-              <div class="card-item" data-year="2024">
                 <div class="card-item-title">
                   Assistant Software Engineer at
-                  <span>Tappware Solutions Limited</span>
+                  <span> Tappware Solutions Limited </span>
                 </div>
+
                 <div class="card-item-desc">
-                  Conducting in-depth research and development within the
-                  LARAVEL, Django, NextJS framework, specifically focusing on
-                  implementation of RESTful APIs.
+                  <strong> May 2023 – Dec 2025 </strong>
+
+                  <br />
+
+                  Developed and maintained web applications using Laravel and
+                  PHP, implemented RESTful APIs, and worked with JavaScript,
+                  jQuery, and backend technologies to deliver interactive and
+                  reliable web solutions. Also conducted research and
+                  development with Django and contributed to projects including
+                  RATC-PMS, HSBD, and GladRags.
+                </div>
+              </div>
+
+              <!-- Junior Software Engineer -->
+
+              <div class="card-item" data-year="2022">
+                <div class="card-item-title">
+                  Junior Software Engineer at
+                  <span> Tappware Solutions Limited </span>
+                </div>
+
+                <div class="card-item-desc">
+                  <strong> May 2022 – May 2023 </strong>
+
+                  <br />
+
+                  Started my professional software engineering career by
+                  developing and maintaining web applications, implementing new
+                  features, troubleshooting issues, working with databases, and
+                  collaborating with senior developers. Gained strong practical
+                  experience in PHP, Laravel, RESTful APIs, JavaScript, and
+                  modern web development.
+                </div>
+              </div>
+
+              <!-- BASIS-SEIP -->
+
+              <div class="card-item" data-year="2023">
+                <div class="card-item-title">
+                  Certified in PHP with Laravel Framework
+
+                  <span> BASIS-SEIP </span>
+                </div>
+
+                <div class="card-item-desc">
+                  Completed professional training in PHP and the Laravel
+                  Framework, including practical web application development,
+                  database integration, RESTful APIs, and deployment of an
+                  e-commerce project.
+                </div>
+              </div>
+
+              <!-- Ostad -->
+
+              <div class="card-item" data-year="2022">
+                <div class="card-item-title">
+                  Certified Web Development with PHP & Laravel
+
+                  <span> Ostad </span>
+                </div>
+
+                <div class="card-item-desc">
+                  Completed Full Stack Web Development training with PHP and
+                  Laravel and achieved Top Performer recognition through
+                  practical project development and hands-on assignments.
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
         <div class="card-section" id="contact">
           <div class="card-content">
             <div class="card-subtitle">CONTACT</div>
+
             <div class="card-contact-wrapper">
+              <!-- Address -->
+
               <div class="card-contact">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -669,15 +2372,22 @@
                   stroke-linejoin="round"
                 >
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                217 Dewanhat, Double Mooring, Agrabad, Chattogram, Bangladesh
-                4100
+
+                <span>
+                  217 Dewanhat, Double Mooring, Agrabad, Chattogram, Bangladesh
+                  4100
+                </span>
               </div>
+
+              <!-- Phone -->
+
               <div class="card-contact">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewbox="0 0 24 24"
+                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
@@ -688,8 +2398,12 @@
                     d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"
                   />
                 </svg>
-                +880 1705322324
+
+                <span> +880 1705322324 </span>
               </div>
+
+              <!-- Email -->
+
               <div class="card-contact">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -703,139 +2417,270 @@
                   <path
                     d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
                   />
+
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                shahadat.user@gmail.com
+
+                <span> shahadat.user@gmail.com </span>
               </div>
-              <button class="contact-me" id="workTogetherBtn">
+
+              <!-- CTA -->
+
+              <button class="contact-me" id="workTogetherBtn" type="button">
                 WORK TOGETHER
               </button>
             </div>
           </div>
         </div>
+
+        <!-- =====================================================
+             NAVIGATION
+        ====================================================== -->
+
         <div class="card-buttons">
-          <button data-section="#about" class="is-active">ABOUT</button>
-          <button data-section="#experience">EXPERIENCE</button>
-          <button data-section="#contact">CONTACT</button>
+          <button type="button" data-section="#about" class="is-active">
+            ABOUT
+          </button>
+
+          <button type="button" data-section="#experience">EXPERIENCE</button>
+
+          <button type="button" data-section="#contact">CONTACT</button>
         </div>
       </div>
     </div>
 
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Let's Work Together!</h3>
+    <!-- =========================================================
+         CONTACT MODAL
+    ========================================================== -->
+
+    <div id="contactModal" class="modal" aria-hidden="true">
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button class="close" type="button" aria-label="Close">&times;</button>
+
+        <h3 id="modalTitle">Let's Work Together!</h3>
+
         <p>Choose your preferred way to connect:</p>
+
         <div class="contact-options">
+          <!-- ===================================================
+               EMAIL
+          ==================================================== -->
+
           <a
             href="mailto:shahadat.user@gmail.com?subject=Work%20Together%20Opportunity&body=Hi%20Shahadat%2C%0A%0AI%20would%20like%20to%20discuss%20working%20together.%20Please%20let%20me%20know%20your%20availability.%0A%0ABest%20regards%2C"
             class="contact-option"
-            target="_blank"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
               />
             </svg>
+
             <div class="option-text">
-              <span>Email</span>
-              <small>Send me an email</small>
+              <span> Email </span>
+
+              <small> Send me an email </small>
             </div>
           </a>
+
+          <!-- ===================================================
+               WHATSAPP
+          ==================================================== -->
 
           <a
             href="https://wa.me/8801705322324?text=Hi%20Shahadat%2C%20I%20saw%20your%20profile%20and%20would%20like%20to%20discuss%20working%20together."
             class="contact-option"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.76.982.998-3.677-.236-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.9 6.994c-.004 5.45-4.438 9.88-9.888 9.88m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.333.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.333 11.893-11.893 0-3.18-1.24-6.162-3.495-8.411"
               />
             </svg>
+
             <div class="option-text">
-              <span>WhatsApp</span>
-              <small>Chat instantly</small>
+              <span> WhatsApp </span>
+
+              <small> Chat instantly </small>
             </div>
           </a>
+
+          <!-- ===================================================
+               LINKEDIN
+          ==================================================== -->
 
           <a
             href="https://www.linkedin.com/in/mohammad-shahadat-hossain-54351a139/"
             class="contact-option"
             target="_blank"
+            rel="noopener noreferrer"
           >
-            <svg viewBox="0 0 24 24">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
               />
             </svg>
+
             <div class="option-text">
-              <span>LinkedIn</span>
-              <small>Connect professionally</small>
+              <span> LinkedIn </span>
+
+              <small> Connect professionally </small>
             </div>
           </a>
         </div>
       </div>
     </div>
 
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
     <script>
-      // Navigation between sections
+      /* =========================================================
+         NAVIGATION
+      ========================================================= */
+
       const buttons = document.querySelectorAll(".card-buttons button");
+
       const sections = document.querySelectorAll(".card-section");
+
       const card = document.querySelector(".card");
 
-      const handleButtonClick = (e) => {
-        const targetSection = e.target.getAttribute("data-section");
-        const section = document.querySelector(targetSection);
-        targetSection !== "#about"
-          ? card.classList.add("is-active")
-          : card.classList.remove("is-active");
-        card.setAttribute("data-state", targetSection);
-        sections.forEach((s) => s.classList.remove("is-active"));
-        buttons.forEach((b) => b.classList.remove("is-active"));
-        e.target.classList.add("is-active");
-        section.classList.add("is-active");
-      };
+      function handleButtonClick(event) {
+        const targetSection = event.currentTarget.getAttribute("data-section");
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", handleButtonClick);
+        const section = document.querySelector(targetSection);
+
+        if (!section) {
+          return;
+        }
+
+        /*
+         * About = large profile header
+         *
+         * Experience / Contact = compact header
+         */
+
+        if (targetSection === "#about") {
+          card.classList.remove("is-active");
+        } else {
+          card.classList.add("is-active");
+        }
+
+        card.setAttribute("data-state", targetSection);
+
+        sections.forEach((item) => {
+          item.classList.remove("is-active");
+
+          item.scrollTop = 0;
+        });
+
+        buttons.forEach((button) => {
+          button.classList.remove("is-active");
+        });
+
+        event.currentTarget.classList.add("is-active");
+
+        section.classList.add("is-active");
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", handleButtonClick);
       });
 
-      // Job title rotation
+      /* =========================================================
+         JOB TITLE ROTATION
+      ========================================================== */
+
       const titles = document.querySelectorAll(".card-jobtitle span");
-      let index = 0;
 
-      setInterval(() => {
-        titles.forEach((title, i) => {
-          title.style.display = i === index ? "inline" : "none";
+      let titleIndex = 0;
+
+      function rotateJobTitle() {
+        if (!titles.length) {
+          return;
+        }
+
+        titles.forEach((title, index) => {
+          title.style.display = index === titleIndex ? "inline" : "none";
         });
-        index = (index + 1) % titles.length;
-      }, 2000);
 
-      // Modal functionality
+        titleIndex = (titleIndex + 1) % titles.length;
+      }
+
+      rotateJobTitle();
+
+      setInterval(rotateJobTitle, 2200);
+
+      /* =========================================================
+         CONTACT MODAL
+      ========================================================== */
+
       const workTogetherBtn = document.getElementById("workTogetherBtn");
+
       const modal = document.getElementById("contactModal");
+
       const closeBtn = document.querySelector(".close");
 
-      workTogetherBtn.addEventListener("click", () => {
-        modal.style.display = "block";
-      });
+      function openModal() {
+        if (!modal) {
+          return;
+        }
 
-      closeBtn.addEventListener("click", () => {
+        modal.style.display = "block";
+
+        modal.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        if (!modal) {
+          return;
+        }
+
         modal.style.display = "none";
-      });
+
+        modal.setAttribute("aria-hidden", "true");
+
+        document.body.style.overflow = "";
+      }
+
+      if (workTogetherBtn) {
+        workTogetherBtn.addEventListener("click", openModal);
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
+      }
+
+      /* =========================================================
+         CLOSE MODAL BY CLICKING OUTSIDE
+      ========================================================== */
 
       window.addEventListener("click", (event) => {
         if (event.target === modal) {
-          modal.style.display = "none";
+          closeModal();
         }
       });
 
-      // Close modal with Escape key
+      /* =========================================================
+         ESCAPE KEY
+      ========================================================== */
+
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          modal.style.display = "none";
+        if (
+          event.key === "Escape" &&
+          modal &&
+          modal.style.display === "block"
+        ) {
+          closeModal();
         }
       });
     </script>
